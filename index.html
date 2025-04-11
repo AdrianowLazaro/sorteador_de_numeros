@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rifa de Páscoa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #resultado {
+      font-size: 2.5rem;
+      color: #2c7be5;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    #contador {
+      font-size: 2rem;
+      color: #ff6600;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #2c7be5;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a5fb4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sorteio de ação entre jovens - PASCÓA 2025</h1>
+  <div id="contador"></div>
+  <div id="resultado">🎲</div>
+  <button onclick="iniciarContagem()">Sortear Número</button>
+
+  <script>
+    
+    const nomes = {
+      1: "João",
+      2: "Maria",
+      3: "Carlos",
+      4: "Ana",
+      5: "Lucas",
+      // ... até o 585
+      585: "Último Nome"
+    };
+
+    function iniciarContagem() {
+      const contadorEl = document.getElementById("contador");
+      const resultadoEl = document.getElementById("resultado");
+
+      let tempo = 5;
+      resultadoEl.textContent = "⏳ Aguardando...";
+      contadorEl.textContent = `Sorteando em ${tempo} segundos...`;
+
+      const intervalo = setInterval(() => {
+        tempo--;
+        if (tempo > 0) {
+          contadorEl.textContent = `Sorteando em ${tempo} segundos...`;
+        } else {
+          clearInterval(intervalo);
+          contadorEl.textContent = "";
+          sortearNumero();
+        }
+      }, 1000);
+    }
+
+    function sortearNumero() {
+      const numero = Math.floor(Math.random() * 585) + 1;
+      const nome = nomes[numero] || "Nome não encontrado";
+      document.getElementById("resultado").innerHTML = `🎉 Número sorteado: <strong>${numero}</strong><br>🙋‍♂️ Nome: <strong>${nome}</strong>`;
+    }
+  </script>
+</body>
+<footer>
+    <h3><em>A junventude é uma semente que Deus na terra semeou...</em></h3>
+    <style>
+        h3{
+            padding: 15px;
+        }
+    </style>
+</footer>
+</html>
